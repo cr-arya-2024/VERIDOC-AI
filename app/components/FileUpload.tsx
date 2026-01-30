@@ -1,0 +1,115 @@
+'use client'
+import React, { useState, useRef } from 'react';
+import { Button } from './Button';
+import { Card } from './Cards';
+
+interface FileUploadProps {
+  onAnalyze: (code: string) => void;
+  isAnalyzing: boolean;
+}
+
+export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyze, isAnalyzing }) => {
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      if (!selectedFile.name.endsWith('.v') && !selectedFile.name.endsWith('.sv')) {
+        setError('Please upload a valid Verilog (.v) or SystemVerilog (.sv) file.');
+        return;
+      }
+      
+      setFile(selectedFile);
+      setError(null);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setPreview(event.target?.result as string);
+      };
+      reader.readAsText(selectedFile);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (preview) {
+      onAnalyze(preview);
+    }
+  };
+
+  const handleClear = () => {
+    setFile(null);
+    setPreview('');
+    setError(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto w-full space-y-6">
+      <Card className="border-dashed border-2 border-indigo-500/30 bg-indigo-950/10">
+        <div className="flex flex-col items-center justify-center py-10 text-center">
+          <div className="mb-4 p-4 rounded-full bg-indigo-500/10 text-indigo-400">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+          </div>
+          <h2 className="text-xl font-bold text-white mb-2">Upload your HDL File</h2>
+          <p className="text-slate-400 mb-6 max-w-xs">
+            Drop your .v or .sv files here to begin the deep logic analysis.
+          </p>
+          
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            accept=".v,.sv"
+            className="hidden"
+          />
+          
+          <div className="flex gap-4">
+            <Button 
+              variant="secondary" 
+              onClick={() => fileInputRef.current?.click()}
+            >
+              Select File
+            </Button>
+            {file && (
+              <Button variant="ghost" onClick={handleClear} disabled={isAnalyzing}>
+                Clear
+              </Button>
+            )}
+          </div>
+          
+          {error && (
+            <p className="mt-4 text-rose-500 text-sm font-medium">{error}</p>
+          )}
+        </div>
+      </Card>
+
+      {preview && (
+        <Card title={`Preview: ${file?.name}`} className="animate-in fade-in slide-in-from-bottom-4">
+          <div className="relative group">
+            <pre className="p-4 bg-slate-950 rounded-lg overflow-x-auto text-sm font-mono text-indigo-300 max-h-96 border border-slate-800">
+              <code>{preview}</code>
+            </pre>
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-xs bg-slate-800 px-2 py-1 rounded text-slate-400">VERILOG</span>
+            </div>
+          </div>
+          
+          <div className="mt-6 flex justify-end">
+            <Button 
+              size="lg" 
+              isLoading={isAnalyzing} 
+              onClick={handleSubmit}
+              className="w-full sm:w-auto"
+            >
+              {isAnalyzing ? 'Analyzing RTL...' : 'Run Analysis'}
+            </Button>
+          </div>
+        </Card>
+      )}
+    </div>
+  );
+};
