@@ -1,0 +1,75 @@
+{
+	"greeting": "Hello from Lingo.dev",
+	"nav": {
+		"brand": "VeriDoc AI",
+		"docs": "Documentation",
+		"benchmarks": "Benchmarks",
+		"api": "API"
+	},
+	"hero": {
+		"title_start": "Verilog Analysis",
+		"title_end": "Supercharged.",
+		"description": "Upload your RTL designs and receive comprehensive documentation, logic insights, and synthesis suggestions in seconds. Powered by advanced AI models."
+	},
+	"features": {
+		"deep_logic": {
+			"title": "Deep Logic Parsing",
+			"subtitle": "Beyond Linting",
+			"desc": "Understand port functionality, signal flow, and potential timing bottlenecks automatically."
+		},
+		"synthesis": {
+			"title": "Synthesis Insights",
+			"subtitle": "Production Ready",
+			"desc": "Get estimates on gate count and suggestions for power or area optimizations."
+		},
+		"auto_doc": {
+			"title": "Auto-Documentation",
+			"subtitle": "Smarter Handover",
+			"desc": "Generate executive summaries and port maps for your project stakeholders and team leads."
+		}
+	},
+	"status": {
+		"analyzing_title": "Analyzing RTL Logic",
+		"analyzing_desc": "Our silicon-grade AI is parsing modules and generating synthesis insights...",
+		"error_title": "Analysis Failed",
+		"try_again": "Try Again"
+	},
+	"file_upload": {
+		"error_invalid": "Please upload a valid Verilog (.v) or SystemVerilog (.sv) file.",
+		"title": "Upload your HDL File",
+		"subtitle": "Drop your .v or .sv files here to begin the deep logic analysis.",
+		"select_btn": "Select File",
+		"clear_btn": "Clear",
+		"preview_title": "Preview",
+		"analyzing_btn": "Analyzing RTL...",
+		"analyze_btn": "Run Analysis"
+	},
+	"analysis": {
+		"title_prefix": "Analysis:",
+		"analyze_another": "Analyze Another File",
+		"executive_summary": "Executive Summary",
+		"port_mapping": "Port Mapping",
+		"table": {
+			"type": "Type",
+			"name": "Name",
+			"width": "Width",
+			"description": "Description"
+		},
+		"synthesis_notes": "Synthesis & Logic Notes",
+		"design_metrics": "Design Metrics",
+		"metrics": {
+			"gate_count": "Est. Gate Count",
+			"fsm_logic": "FSM Logic",
+			"clock_domains": "Clock Domains",
+			"detected": "Detected",
+			"none": "None"
+		},
+		"optimization_tips": "Optimization Tips"
+	},
+	"footer": {
+		"copyright": "© 2024 VeriDoc AI. All rights reserved. Engineering excellence for the next generation of hardware.",
+		"privacy": "Privacy",
+		"terms": "Terms",
+		"contact": "Contact"
+	}
+}

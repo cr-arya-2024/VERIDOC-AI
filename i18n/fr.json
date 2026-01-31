@@ -1,0 +1,75 @@
+{
+  "greeting": "Bonjour de Lingo.dev",
+  "nav": {
+    "brand": "VeriDoc AI",
+    "docs": "Documentation",
+    "benchmarks": "Benchmarks",
+    "api": "API"
+  },
+  "hero": {
+    "title_start": "Analyse Verilog",
+    "title_end": "Surchargée.",
+    "description": "Téléchargez vos conceptions RTL et recevez une documentation complète, des informations logiques et des suggestions de synthèse en quelques secondes. Propulsé par des modèles d'IA avancés."
+  },
+  "features": {
+    "deep_logic": {
+      "title": "Analyse Logique Profonde",
+      "subtitle": "Au-delà du Linting",
+      "desc": "Comprenez automatiquement la fonctionnalité des ports, le flux des signaux et les goulots d'étranglement temporels potentiels."
+    },
+    "synthesis": {
+      "title": "Insights de Synthèse",
+      "subtitle": "Prêt pour la Production",
+      "desc": "Obtenez des estimations sur le nombre de portes et des suggestions pour l'optimisation de la puissance ou de la surface."
+    },
+    "auto_doc": {
+      "title": "Auto-Documentation",
+      "subtitle": "Passation Plus Intelligente",
+      "desc": "Générez des résumés exécutifs et des cartes de ports pour les parties prenantes du projet et les chefs d'équipe."
+    }
+  },
+  "status": {
+    "analyzing_title": "Analyse de la Logique RTL",
+    "analyzing_desc": "Notre IA de qualité silicium analyse les modules et génère des insights de synthèse...",
+    "error_title": "Échec de l'Analyse",
+    "try_again": "Réessayer"
+  },
+  "file_upload": {
+    "error_invalid": "Veuillez télécharger un fichier Verilog (.v) ou SystemVerilog (.sv) valide.",
+    "title": "Téléchargez votre Fichier HDL",
+    "subtitle": "Déposez vos fichiers .v ou .sv ici pour commencer l'analyse logique profonde.",
+    "select_btn": "Sélectionner un Fichier",
+    "clear_btn": "Effacer",
+    "preview_title": "Aperçu",
+    "analyzing_btn": "Analyse RTL...",
+    "analyze_btn": "Lancer l'Analyse"
+  },
+  "analysis": {
+    "title_prefix": "Analyse:",
+    "analyze_another": "Analyser un Autre Fichier",
+    "executive_summary": "Résumé Exécutif",
+    "port_mapping": "Mappage des Ports",
+    "table": {
+      "type": "Type",
+      "name": "Nom",
+      "width": "Largeur",
+      "description": "Description"
+    },
+    "synthesis_notes": "Notes de Synthèse et Logique",
+    "design_metrics": "Métriques de Conception",
+    "metrics": {
+      "gate_count": "Nbre Est. de Portes",
+      "fsm_logic": "Logique FSM",
+      "clock_domains": "Domaines d'Horloge",
+      "detected": "Détecté",
+      "none": "Aucun"
+    },
+    "optimization_tips": "Conseils d'Optimisation"
+  },
+  "footer": {
+    "copyright": "© 2024 VeriDoc AI. Tous droits réservés. L'excellence en ingénierie pour la prochaine génération de matériel.",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "contact": "Contact"
+  }
+}

@@ -1,0 +1,75 @@
+{
+    "greeting": "来自 Lingo.dev 的问候",
+    "nav": {
+        "brand": "VeriDoc AI",
+        "docs": "文档",
+        "benchmarks": "基准测试",
+        "api": "API"
+    },
+    "hero": {
+        "title_start": "Verilog 分析",
+        "title_end": "超级动力。",
+        "description": "上传您的 RTL 设计，并在几秒钟内获得全面的文档、逻辑洞察和综合建议。由先进的 AI 模型驱动。"
+    },
+    "features": {
+        "deep_logic": {
+            "title": "深度逻辑解析",
+            "subtitle": "超越 Linting",
+            "desc": "自动理解端口功能、信号流和潜在的时序瓶颈。"
+        },
+        "synthesis": {
+            "title": "综合洞察",
+            "subtitle": "生产就绪",
+            "desc": "获取门数量估算以及功耗或面积优化的建议。"
+        },
+        "auto_doc": {
+            "title": "自动文档",
+            "subtitle": "更智能的移交",
+            "desc": "为您的项目利益相关者和团队负责人生成执行摘要和端口映射。"
+        }
+    },
+    "status": {
+        "analyzing_title": "正在分析 RTL 逻辑",
+        "analyzing_desc": "我们的硅级 AI 正在解析模块并生成综合洞察...",
+        "error_title": "分析失败",
+        "try_again": "重试"
+    },
+    "file_upload": {
+        "error_invalid": "请上传有效的 Verilog (.v) 或 SystemVerilog (.sv) 文件。",
+        "title": "上传您的 HDL 文件",
+        "subtitle": "将您的 .v 或 .sv 文件拖到此处以开始深度逻辑分析。",
+        "select_btn": "选择文件",
+        "clear_btn": "清除",
+        "preview_title": "预览",
+        "analyzing_btn": "正在分析 RTL...",
+        "analyze_btn": "运行分析"
+    },
+    "analysis": {
+        "title_prefix": "分析：",
+        "analyze_another": "分析另一个文件",
+        "executive_summary": "执行摘要",
+        "port_mapping": "端口映射",
+        "table": {
+            "type": "类型",
+            "name": "名称",
+            "width": "位宽",
+            "description": "描述"
+        },
+        "synthesis_notes": "综合与逻辑说明",
+        "design_metrics": "设计指标",
+        "metrics": {
+            "gate_count": "预计门数量",
+            "fsm_logic": "FSM 逻辑",
+            "clock_domains": "时钟域",
+            "detected": "已检测",
+            "none": "无"
+        },
+        "optimization_tips": "优化建议"
+    },
+    "footer": {
+        "copyright": "© 2024 VeriDoc AI. 版权所有。下一代硬件的工程卓越。",
+        "privacy": "隐私",
+        "terms": "条款",
+        "contact": "联系我们"
+    }
+}

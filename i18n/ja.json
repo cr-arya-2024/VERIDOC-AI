@@ -1,0 +1,75 @@
+{
+    "greeting": "Lingo.dev からのこんにちは",
+    "nav": {
+        "brand": "VeriDoc AI",
+        "docs": "ドキュメント",
+        "benchmarks": "ベンチマーク",
+        "api": "API"
+    },
+    "hero": {
+        "title_start": "Verilog 分析",
+        "title_end": "スーパーチャージ。",
+        "description": "RTLデザインをアップロードして、包括的なドキュメント、ロジックの洞察、合成の提案を数秒で受け取ります。高度なAIモデルを搭載。"
+    },
+    "features": {
+        "deep_logic": {
+            "title": "ディープ・ロジック・パーシング",
+            "subtitle": "Lintingを超えて",
+            "desc": "ポート機能、シグナルフロー、潜在的なタイミングのボトルネックを自動的に理解します。"
+        },
+        "synthesis": {
+            "title": "合成の洞察",
+            "subtitle": "本番環境対応",
+            "desc": "ゲート数の見積もりと、電力または面積の最適化の提案を取得します。"
+        },
+        "auto_doc": {
+            "title": "自動ドキュメンテーション",
+            "subtitle": "よりスマートな引き継ぎ",
+            "desc": "プロジェクトの利害関係者やチームリーダーのために、エグゼクティブサマリーとポートマップを生成します。"
+        }
+    },
+    "status": {
+        "analyzing_title": "RTLロジックを分析中",
+        "analyzing_desc": "当社のシリコングレードAIがモジュールを解析し、合成の洞察を生成しています...",
+        "error_title": "分析に失敗しました",
+        "try_again": "再試行"
+    },
+    "file_upload": {
+        "error_invalid": "有効なVerilog (.v) または SystemVerilog (.sv) ファイルをアップロードしてください。",
+        "title": "HDLファイルをアップロード",
+        "subtitle": ".v または .sv ファイルをここにドロップして、詳細なロジック分析を開始してください。",
+        "select_btn": "ファイルを選択",
+        "clear_btn": "クリア",
+        "preview_title": "プレビュー",
+        "analyzing_btn": "RTLを分析中...",
+        "analyze_btn": "分析を実行"
+    },
+    "analysis": {
+        "title_prefix": "分析:",
+        "analyze_another": "別のファイルを分析",
+        "executive_summary": "エグゼクティブサマリー",
+        "port_mapping": "ポートマッピング",
+        "table": {
+            "type": "タイプ",
+            "name": "名前",
+            "width": "幅",
+            "description": "説明"
+        },
+        "synthesis_notes": "合成 & ロジックノート",
+        "design_metrics": "デザインメトリクス",
+        "metrics": {
+            "gate_count": "推定ゲート数",
+            "fsm_logic": "FSM ロジック",
+            "clock_domains": "クロックドメイン",
+            "detected": "検出済み",
+            "none": "なし"
+        },
+        "optimization_tips": "最適化のヒント"
+    },
+    "footer": {
+        "copyright": "© 2024 VeriDoc AI. All rights reserved. 次世代ハードウェアのためのエンジニアリングの卓越性。",
+        "privacy": "プライバシー",
+        "terms": "利用規約",
+        "contact": "お問い合わせ"
+    }
+}

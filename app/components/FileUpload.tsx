@@ -8,7 +8,10 @@ interface FileUploadProps {
   isAnalyzing: boolean;
 }
 
+import { useTranslations } from 'next-intl';
+
 export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyze, isAnalyzing }) => {
+  const t = useTranslations('file_upload');
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
@@ -18,10 +21,10 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyze, isAnalyzing }
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       if (!selectedFile.name.endsWith('.v') && !selectedFile.name.endsWith('.sv')) {
-        setError('Please upload a valid Verilog (.v) or SystemVerilog (.sv) file.');
+        setError(t('error_invalid'));
         return;
       }
-      
+
       setFile(selectedFile);
       setError(null);
       const reader = new FileReader();
@@ -54,11 +57,11 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyze, isAnalyzing }
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-white mb-2">Upload your HDL File</h2>
+          <h2 className="text-xl font-bold text-white mb-2">{t('title')}</h2>
           <p className="text-slate-400 mb-6 max-w-xs">
-            Drop your .v or .sv files here to begin the deep logic analysis.
+            {t('subtitle')}
           </p>
-          
+
           <input
             type="file"
             ref={fileInputRef}
@@ -66,21 +69,21 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyze, isAnalyzing }
             accept=".v,.sv"
             className="hidden"
           />
-          
+
           <div className="flex gap-4">
-            <Button 
-              variant="secondary" 
+            <Button
+              variant="secondary"
               onClick={() => fileInputRef.current?.click()}
             >
-              Select File
+              {t('select_btn')}
             </Button>
             {file && (
               <Button variant="ghost" onClick={handleClear} disabled={isAnalyzing}>
-                Clear
+                {t('clear_btn')}
               </Button>
             )}
           </div>
-          
+
           {error && (
             <p className="mt-4 text-rose-500 text-sm font-medium">{error}</p>
           )}
@@ -88,7 +91,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyze, isAnalyzing }
       </Card>
 
       {preview && (
-        <Card title={`Preview: ${file?.name}`} className="animate-in fade-in slide-in-from-bottom-4">
+        <Card title={`${t('preview_title')}: ${file?.name}`} className="animate-in fade-in slide-in-from-bottom-4">
           <div className="relative group">
             <pre className="p-4 bg-slate-950 rounded-lg overflow-x-auto text-sm font-mono text-indigo-300 max-h-96 border border-slate-800">
               <code>{preview}</code>
@@ -97,15 +100,15 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyze, isAnalyzing }
               <span className="text-xs bg-slate-800 px-2 py-1 rounded text-slate-400">VERILOG</span>
             </div>
           </div>
-          
+
           <div className="mt-6 flex justify-end">
-            <Button 
-              size="lg" 
-              isLoading={isAnalyzing} 
+            <Button
+              size="lg"
+              isLoading={isAnalyzing}
               onClick={handleSubmit}
               className="w-full sm:w-auto"
             >
-              {isAnalyzing ? 'Analyzing RTL...' : 'Run Analysis'}
+              {isAnalyzing ? t('analyzing_btn') : t('analyze_btn')}
             </Button>
           </div>
         </Card>

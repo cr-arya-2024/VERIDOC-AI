@@ -6,13 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "i18n": "lingo"
   },
   "dependencies": {
     "@google/genai": "^1.38.0",
     "@supabase/supabase-js": "^2.93.3",
     "axios": "^1.13.4",
+    "lingo.dev": "^0.128.0",
     "next": "16.1.6",
+    "next-intl": "^4.8.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-icons": "^5.5.0"
