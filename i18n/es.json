@@ -1,75 +1,75 @@
 {
-    "greeting": "Hola desde Lingo.dev",
-    "nav": {
-        "brand": "VeriDoc AI",
-        "docs": "Documentación",
-        "benchmarks": "Evaluaciones",
-        "api": "API"
+  "greeting": "Hola desde Lingo.dev",
+  "nav": {
+    "brand": "VeriDoc AI",
+    "docs": "Documentación",
+    "benchmarks": "Evaluaciones",
+    "api": "API"
+  },
+  "hero": {
+    "title_start": "Análisis Verilog",
+    "title_end": "Supercargado.",
+    "description": "Sube tus diseños RTL y recibe documentación completa, información lógica y sugerencias de síntesis en segundos. Impulsado por modelos de IA avanzados."
+  },
+  "features": {
+    "deep_logic": {
+      "title": "Análisis Lógico Profundo",
+      "subtitle": "Más allá del Linting",
+      "desc": "Entiende la funcionalidad de los puertos, el flujo de señales y los posibles cuellos de botella de tiempo automáticamente."
     },
-    "hero": {
-        "title_start": "Análisis Verilog",
-        "title_end": "Supercargado.",
-        "description": "Sube tus diseños RTL y recibe documentación completa, información lógica y sugerencias de síntesis en segundos. Impulsado por modelos de IA avanzados."
+    "synthesis": {
+      "title": "Insights de Síntesis",
+      "subtitle": "Listo para Producción",
+      "desc": "Obtén estimaciones sobre el conteo de puertas y sugerencias para optimizaciones de potencia o área."
     },
-    "features": {
-        "deep_logic": {
-            "title": "Análisis Lógico Profundo",
-            "subtitle": "Más allá del Linting",
-            "desc": "Entiende la funcionalidad de los puertos, el flujo de señales y los posibles cuellos de botella de tiempo automáticamente."
-        },
-        "synthesis": {
-            "title": "Insights de Síntesis",
-            "subtitle": "Listo para Producción",
-            "desc": "Obtén estimaciones sobre el conteo de puertas y sugerencias para optimizaciones de potencia o área."
-        },
-        "auto_doc": {
-            "title": "Auto-Documentación",
-            "subtitle": "Traspaso Más Inteligente",
-            "desc": "Genera resúmenes ejecutivos y mapas de puertos para los interesados del proyecto y líderes de equipo."
-        }
-    },
-    "status": {
-        "analyzing_title": "Analizando Lógica RTL",
-        "analyzing_desc": "Nuestra IA de grado silicio está analizando módulos y generando insights de síntesis...",
-        "error_title": "Análisis Fallido",
-        "try_again": "Intentar de Nuevo"
-    },
-    "file_upload": {
-        "error_invalid": "Por favor sube un archivo Verilog (.v) o SystemVerilog (.sv) válido.",
-        "title": "Sube tu Archivo HDL",
-        "subtitle": "Suelta tus archivos .v o .sv aquí para comenzar el análisis lógico profundo.",
-        "select_btn": "Seleccionar Archivo",
-        "clear_btn": "Limpiar",
-        "preview_title": "Vista Previa",
-        "analyzing_btn": "Analizando RTL...",
-        "analyze_btn": "Ejecutar Análisis"
-    },
-    "analysis": {
-        "title_prefix": "Análisis:",
-        "analyze_another": "Analizar Otro Archivo",
-        "executive_summary": "Resumen Ejecutivo",
-        "port_mapping": "Mapeo de Puertos",
-        "table": {
-            "type": "Tipo",
-            "name": "Nombre",
-            "width": "Ancho",
-            "description": "Descripción"
-        },
-        "synthesis_notes": "Notas de Síntesis y Lógica",
-        "design_metrics": "Métricas de Diseño",
-        "metrics": {
-            "gate_count": "Conteo Est. de Puertas",
-            "fsm_logic": "Lógica FSM",
-            "clock_domains": "Dominios de Reloj",
-            "detected": "Detectado",
-            "none": "Ninguno"
-        },
-        "optimization_tips": "Consejos de Optimización"
-    },
-    "footer": {
-        "copyright": "© 2024 VeriDoc AI. Todos los derechos reservados. Excelencia en ingeniería para la próxima generación de hardware.",
-        "privacy": "Privacidad",
-        "terms": "Términos",
-        "contact": "Contacto"
+    "auto_doc": {
+      "title": "Auto-Documentación",
+      "subtitle": "Traspaso Más Inteligente",
+      "desc": "Genera resúmenes ejecutivos y mapas de puertos para los interesados del proyecto y líderes de equipo."
     }
+  },
+  "status": {
+    "analyzing_title": "Analizando Lógica RTL",
+    "analyzing_desc": "Nuestra IA de grado silicio está analizando módulos y generando insights de síntesis...",
+    "error_title": "Análisis Fallido",
+    "try_again": "Intentar de Nuevo"
+  },
+  "file_upload": {
+    "error_invalid": "Por favor sube un archivo Verilog (.v) o SystemVerilog (.sv) válido.",
+    "title": "Sube tu Archivo HDL",
+    "subtitle": "Suelta tus archivos .v o .sv aquí para comenzar el análisis lógico profundo.",
+    "select_btn": "Seleccionar Archivo",
+    "clear_btn": "Limpiar",
+    "preview_title": "Vista Previa",
+    "analyzing_btn": "Analizando RTL...",
+    "analyze_btn": "Ejecutar Análisis"
+  },
+  "analysis": {
+    "title_prefix": "Análisis:",
+    "analyze_another": "Analizar Otro Archivo",
+    "executive_summary": "Resumen Ejecutivo",
+    "port_mapping": "Mapeo de Puertos",
+    "table": {
+      "type": "Tipo",
+      "name": "Nombre",
+      "width": "Ancho",
+      "description": "Descripción"
+    },
+    "synthesis_notes": "Notas de Síntesis y Lógica",
+    "design_metrics": "Métricas de Diseño",
+    "metrics": {
+      "gate_count": "Conteo Est. de Puertas",
+      "fsm_logic": "Lógica FSM",
+      "clock_domains": "Dominios de Reloj",
+      "detected": "Detectado",
+      "none": "Ninguno"
+    },
+    "optimization_tips": "Consejos de Optimización"
+  },
+  "footer": {
+    "copyright": "© 2024 VeriDoc AI. Todos los derechos reservados. Excelencia en ingeniería para la próxima generación de hardware.",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "contact": "Contacto"
+  }
 }

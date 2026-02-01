@@ -7,17 +7,18 @@ export interface VerilogPort {
 }
 
 export interface AnalysisResult {
-  moduleName: string;
-  description: string;
-  ports: VerilogPort[];
-  synthesisNotes: string[];
-  complexity: {
+  rawAnalysis?: string;
+  moduleName?: string;
+  description?: string;
+  ports?: VerilogPort[];
+  synthesisNotes?: string[];
+  complexity?: {
     estimatedGates: string;
     fsmDetected: boolean;
     clockDomains: number;
   };
-  suggestions: string[];
-  summary: string;
+  suggestions?: string[];
+  summary?: string;
 }
 
 export enum AppState {

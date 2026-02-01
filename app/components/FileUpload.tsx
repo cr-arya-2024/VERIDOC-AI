@@ -2,15 +2,14 @@
 import React, { useState, useRef } from 'react';
 import { Button } from './Button';
 import { Card } from './Cards';
+import { useTranslations } from 'next-intl';
 
 interface FileUploadProps {
-  onAnalyze: (code: string) => void;
+  onAnalyzeComplete: (analysis: string) => void;
   isAnalyzing: boolean;
 }
 
-import { useTranslations } from 'next-intl';
-
-export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyze, isAnalyzing }) => {
+export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyzeComplete, isAnalyzing }) => {
   const t = useTranslations('file_upload');
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>('');
@@ -35,9 +34,34 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyze, isAnalyzing }
     }
   };
 
-  const handleSubmit = () => {
-    if (preview) {
-      onAnalyze(preview);
+  const handleSubmit = async () => {
+    if (!file) {
+      setError('Please select a file first');
+      return;
+    }
+
+    try {
+      setError(null);
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const res = await fetch('/api/analyze', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        throw new Error(data.error || 'Failed to analyze file');
+      }
+
+      // route.ts returns: { success, data: { analysis: string, ... } }
+      onAnalyzeComplete(data.data.analysis);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || 'An unexpected error occurred during analysis.');
     }
   };
 
@@ -112,7 +136,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyze, isAnalyzing }
             </Button>
           </div>
         </Card>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
