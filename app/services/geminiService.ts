@@ -1,16 +1,23 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 import { AnalysisResult } from "../lib/types";
-
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const genAI = new GoogleGenerativeAI("AIzaSyAHT77zs1i9MlZYGXhDXL6XvAXPoKu1jso");
+async function checkModels() {
+  const models = await genAI.listModels();
+  console.log(models);
+  // This will print the exact strings (e.g., "models/gemini-3-pro") 
+  // you are allowed to use.
+}
 const getAIClient = () => {
   return new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 };
 
 export const analyzeVerilogCode = async (code: string): Promise<AnalysisResult> => {
   const ai = getAIClient();
-  
+
   const response = await ai.models.generateContent({
-    model: "gemini-3-pro-preview",
+    model: "gemini-3-flash-preview",
     contents: `Analyze the following Verilog code and provide a structured JSON report. 
     Code:
     \`\`\`verilog
@@ -64,6 +71,6 @@ export const analyzeVerilogCode = async (code: string): Promise<AnalysisResult> 
 
   const text = response.text;
   if (!text) throw new Error("No analysis received from AI.");
-  
+
   return JSON.parse(text.trim()) as AnalysisResult;
 };

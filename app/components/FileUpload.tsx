@@ -54,13 +54,17 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyzeComplete, isAna
       const data = await res.json();
 
       if (!res.ok || data.error) {
-        throw new Error(data.error || 'Failed to analyze file');
+        // Show detailed error message from API
+        const errorMsg = data.details
+          ? `${data.error}: ${data.details}`
+          : data.error || 'Failed to analyze file';
+        throw new Error(errorMsg);
       }
 
       // route.ts returns: { success, data: { analysis: string, ... } }
       onAnalyzeComplete(data.data.analysis);
     } catch (err: any) {
-      console.error(err);
+      console.error('Analysis error:', err);
       setError(err.message || 'An unexpected error occurred during analysis.');
     }
   };

@@ -1,34 +1,56 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-
-// Initialize Supabase client
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-// Initialize Gemini AI
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+import { supabaseAdmin } from '@/app/lib/supabase';
+import { GoogleGenAI } from '@google/genai';
 
 export async function POST(request: NextRequest) {
     try {
-        // 1. Receive Verilog file from frontend
-        const formData = await request.formData();
-        const file = formData.get('file') as File;
+        // --- 0. Validate environment ---
+        const geminiKey = process.env.GEMINI_API_KEY;
 
+        if (!geminiKey) {
+            console.error('Missing Gemini API Key');
+            return NextResponse.json(
+                {
+                    error: 'Missing environment variables',
+                    details: 'Check GEMINI_API_KEY',
+                },
+                { status: 500 }
+            );
+        }
+
+        // Initialize Gemini client after validation
+        const genAI = new GoogleGenAI({ apiKey: geminiKey });
+
+        // --- 1. Parse form data ---
+        console.log('Step 1: Parsing form data');
+        let formData: FormData;
+        try {
+            formData = await request.formData();
+        } catch (parseError: any) {
+            console.error('FormData parsing error:', parseError);
+            return NextResponse.json(
+                {
+                    error: 'Failed to parse request',
+                    details: parseError?.message,
+                },
+                { status: 400 }
+            );
+        }
+
+        const file = formData.get('file') as File | null;
         if (!file) {
             return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
         }
+        console.log(`Processing file: ${file.name}, size: ${file.size} bytes`);
 
-        // Read file content
         const code_content = await file.text();
         const file_name = file.name;
 
-        // 2. Send to Gemini AI for analysis
-        const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
-
-        const prompt = `Analyze this Verilog code and provide:
+        // --- 2. Call Gemini ---
+        console.log('Step 2: Calling Gemini API');
+        let analysis_result = '';
+        try {
+            const prompt = `Analyze this Verilog code and provide:
 1. Code quality assessment
 2. Potential bugs or errors
 3. Optimization suggestions
@@ -38,42 +60,83 @@ export async function POST(request: NextRequest) {
 Verilog Code:
 ${code_content}`;
 
-        const result = await model.generateContent(prompt);
-        const analysis_result = result.response.text();
+            const response = await genAI.models.generateContent({
+                model: 'gemini-3-flash-preview',
+                contents: prompt,
+            });
 
-        // 3. Store results in Supabase
-        const { data, error } = await supabase
+            analysis_result = response.text || '';
+            if (!analysis_result) {
+                throw new Error('No analysis text received from AI');
+            }
+            console.log('Gemini analysis completed successfully');
+        } catch (aiError: any) {
+            console.error('Gemini API error:', aiError);
+            return NextResponse.json(
+                {
+                    error: 'AI analysis failed',
+                    details: aiError?.message || 'Unknown AI error',
+                },
+                { status: 502 }
+            );
+        }
+
+        // --- 3. Save to Supabase ---
+        console.log('Step 3: Saving to Supabase');
+        const isUsingServiceKey = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
+        console.log(`Bypass RLS active: ${isUsingServiceKey}`);
+
+        const { data, error } = await supabaseAdmin
             .from('verilog_analyses')
             .insert([
                 {
                     file_name,
                     code_content,
-                    analysis_result: { analysis: analysis_result }
-                }
+                    analysis_result: { analysis: analysis_result },
+                },
             ])
             .select()
             .single();
 
         if (error) {
             console.error('Supabase error:', error);
-            return NextResponse.json({ error: 'Failed to save analysis' }, { status: 500 });
+            return NextResponse.json(
+                {
+                    error: 'Failed to save analysis',
+                    details: error.message,
+                },
+                { status: 500 }
+            );
         }
 
-        // 4. Return analysis to frontend
+        console.log(`Analysis saved successfully with ID: ${data.id}`);
+
+        // --- 4. Respond to client ---
         return NextResponse.json({
             success: true,
             data: {
                 id: data.id,
                 file_name: data.file_name,
                 analysis: analysis_result,
-                created_at: data.created_at
-            }
+                created_at: data.created_at,
+            },
         });
+    } catch (error: any) {
+        console.error('=== ANALYSIS ERROR (UNCAUGHT) ===');
+        console.error('Error name:', error?.name);
+        console.error('Error message:', error?.message);
+        console.error('Error stack:', error?.stack);
+        console.error('Full error object (safe):', {
+            name: error?.name,
+            message: error?.message,
+        });
+        console.error('=================================');
 
-    } catch (error) {
-        console.error('Analysis error:', error);
         return NextResponse.json(
-            { error: 'Failed to analyze code' },
+            {
+                error: 'Failed to analyze code',
+                details: error?.message || String(error),
+            },
             { status: 500 }
         );
     }
