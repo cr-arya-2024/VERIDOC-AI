@@ -51,11 +51,12 @@ export async function POST(request: NextRequest) {
         let analysis_result = '';
         try {
             const prompt = `Analyze this Verilog code and provide:
-1. Code quality assessment
-2. Potential bugs or errors
-3. Optimization suggestions
-4. Synthesis warnings
-5. Best practices violations
+1.Provide the analysis in plain text only. Do not use Markdown formatting such as asterisks (**), hashtags (#), backticks (\`), or underscores. Use simple capitalization for headers and standard dashes for lists. 
+2.Code quality assessment
+3. Potential bugs or errors
+4. Optimization suggestions
+5. Synthesis warnings
+6. Best practices violations
 
 Verilog Code:
 ${code_content}`;
