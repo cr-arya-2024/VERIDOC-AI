@@ -63,9 +63,10 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyzeComplete, isAna
 
       // route.ts returns: { success, data: { analysis: string, ... } }
       onAnalyzeComplete(data.data.analysis);
-    } catch (err: any) {
-      console.error('Analysis error:', err);
-      setError(err.message || 'An unexpected error occurred during analysis.');
+    } catch (err: unknown) {
+      const error = err as Error;
+      console.error('Analysis error:', error);
+      setError(error.message || 'An unexpected error occurred during analysis.');
     }
   };
 

@@ -1,0 +1,6 @@
+
+C:\Users\CSC\Desktop\veridoc-ai\app\components\LanguageSwitcher.tsx
+  3:21  warning  'useTranslations' is defined but never used  @typescript-eslint/no-unused-vars
+
+??? 1 problem (0 errors, 1 warning)
+

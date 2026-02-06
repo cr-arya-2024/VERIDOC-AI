@@ -5,7 +5,6 @@ import { useRouter, usePathname } from '@/i18n/routing';
 import { ChangeEvent, useTransition } from 'react';
 
 export default function LanguageSwitcher() {
-    const t = useTranslations('LanguageSwitcher'); // We can add this key later or just hardcode for dropdown
     const locale = useLocale();
     const router = useRouter();
     const pathname = usePathname();

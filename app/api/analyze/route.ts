@@ -26,7 +26,8 @@ export async function POST(request: NextRequest) {
         let formData: FormData;
         try {
             formData = await request.formData();
-        } catch (parseError: any) {
+        } catch (error: unknown) {
+            const parseError = error as Error;
             console.error('FormData parsing error:', parseError);
             return NextResponse.json(
                 {
@@ -71,7 +72,8 @@ ${code_content}`;
                 throw new Error('No analysis text received from AI');
             }
             console.log('Gemini analysis completed successfully');
-        } catch (aiError: any) {
+        } catch (error: unknown) {
+            const aiError = error as Error;
             console.error('Gemini API error:', aiError);
             return NextResponse.json(
                 {
@@ -122,21 +124,22 @@ ${code_content}`;
                 created_at: data.created_at,
             },
         });
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const err = error as Error;
         console.error('=== ANALYSIS ERROR (UNCAUGHT) ===');
-        console.error('Error name:', error?.name);
-        console.error('Error message:', error?.message);
-        console.error('Error stack:', error?.stack);
+        console.error('Error name:', err?.name);
+        console.error('Error message:', err?.message);
+        console.error('Error stack:', err?.stack);
         console.error('Full error object (safe):', {
-            name: error?.name,
-            message: error?.message,
+            name: err?.name,
+            message: err?.message,
         });
         console.error('=================================');
 
         return NextResponse.json(
             {
                 error: 'Failed to analyze code',
-                details: error?.message || String(error),
+                details: err?.message || String(err),
             },
             { status: 500 }
         );
