@@ -26,7 +26,7 @@ interface DotGridProps {
 
 const DotGrid: React.FC<DotGridProps> = ({
     dotSize = 5,
-    gap = 25,
+    gap = 15,
     baseColor = '#271E37',
     activeColor = '#5227FF',
     proximity = 120,
@@ -157,12 +157,7 @@ const DotGrid: React.FC<DotGridProps> = ({
             ref={canvasRef}
             className={`absolute top-0 left-0 w-full h-full pointer-events-none ${className}`}
             style={{
-                opacity: 0.6,
                 zIndex: 0,
-                WebkitMaskImage: 'linear-gradient(to bottom, transparent, white 30%, white 70%, transparent), linear-gradient(to right, transparent, white 30%, white 70%, transparent)',
-                maskImage: 'linear-gradient(to bottom, transparent, white 30%, white 70%, transparent), linear-gradient(to right, transparent, white 30%, white 70%, transparent)',
-                WebkitMaskComposite: 'source-in',
-                maskComposite: 'intersect'
             }}
         />
     );

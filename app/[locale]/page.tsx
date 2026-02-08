@@ -8,7 +8,7 @@ import { AnalysisResult, AppState } from '../lib/types';
 import DotGrid from '../components/DotGrid';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from '../components/LanguageSwitcher';
-
+import ScrollSequenceCanvas from "../components/ScrollSequenceCanvas";
 const App: React.FC = () => {
   const t = useTranslations();
   const [appState, setAppState] = useState<AppState>(AppState.LANDING);
@@ -72,59 +72,55 @@ const App: React.FC = () => {
       {/* Main Content Area */}
       <main className="flex-grow flex flex-col w-full">
         {appState === AppState.LANDING && (
-          <div className="relative w-full overflow-hidden">
-            {/* Full-width Background Section */}
-            <div className="absolute inset-0 z-0 h-[700px] top-0">
-              <DotGrid className="w-full h-full"
-                dotSize={5}
-                gap={15}
-                baseColor="#2c2828ff"
-                activeColor="#5227FF"
-                proximity={120}
-                shockRadius={250}
-                shockStrength={5}
-                resistance={750}
-                returnDuration={1.5}
-              />
-            </div>
+          <div className="relative w-full">
+            {/* Full-width background animation with storytelling overlays */}
+            <ScrollSequenceCanvas
+              titleStart={t('hero.title_start')}
+              titleEnd={t('hero.title_end')}
+              description={t('hero.description')}
+            />
 
-            {/* Constrained Content Container */}
-            <div className="relative z-10 max-w-7xl mx-auto w-full p-6 flex flex-col items-center justify-center space-y-12 py-12 min-h-[600px]">
-              <div className="text-center space-y-6 max-w-3xl">
-                <h1 id="hero-title" className="text-5xl md:text-7xl font-extrabold tracking-tight text-white">
-                  {t('hero.title_start')} <br />
-                  <span className="text-indigo-500">{t('hero.title_end')}</span>
-                </h1>
-                <p id="hero-description" className="text-xl text-slate-400 max-w-2xl mx-auto">
-                  {t('hero.description')}
-                </p>
+            <div className="relative w-full -mt-48 z-40">
+              {/* Full-width DotGrid background with radial fade focal point */}
+              <div
+                className="absolute inset-0 w-full pointer-events-none overflow-hidden"
+                style={{
+                  maskImage: 'linear-gradient(to bottom, transparent, white 300px), radial-gradient(circle at 50% 200px, white 0%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, transparent, white 300px), radial-gradient(circle at 50% 200px, white 0%, transparent 100%)',
+                  WebkitMaskComposite: 'source-in',
+                  maskComposite: 'intersect'
+                }}
+              >
+                <DotGrid />
               </div>
 
-              <FileUpload onAnalyzeComplete={handleAnalyzeComplete} isAnalyzing={false} />
+              <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col items-center justify-center space-y-12 pb-12 px-4 sm:px-6 lg:px-8">
+                <FileUpload onAnalyzeComplete={handleAnalyzeComplete} isAnalyzing={false} />
 
-              {/* Features Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl pt-12">
-                <Card
-                  title={t('features.deep_logic.title')}
-                  subtitle={t('features.deep_logic.subtitle')}
-                  icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" /></svg>}
-                >
-                  <p className="text-sm text-slate-400">{t('features.deep_logic.desc')}</p>
-                </Card>
-                <Card
-                  title={t('features.synthesis.title')}
-                  subtitle={t('features.synthesis.subtitle')}
-                  icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>}
-                >
-                  <p className="text-sm text-slate-400">{t('features.synthesis.desc')}</p>
-                </Card>
-                <Card
-                  title={t('features.auto_doc.title')}
-                  subtitle={t('features.auto_doc.subtitle')}
-                  icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>}
-                >
-                  <p className="text-sm text-slate-400">{t('features.auto_doc.desc')}</p>
-                </Card>
+                {/* Features Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl pt-12 text-white">
+                  <Card
+                    title={t('features.deep_logic.title')}
+                    subtitle={t('features.deep_logic.subtitle')}
+                    icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" /></svg>}
+                  >
+                    <p className="text-sm text-slate-400">{t('features.deep_logic.desc')}</p>
+                  </Card>
+                  <Card
+                    title={t('features.synthesis.title')}
+                    subtitle={t('features.synthesis.subtitle')}
+                    icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>}
+                  >
+                    <p className="text-sm text-slate-400">{t('features.synthesis.desc')}</p>
+                  </Card>
+                  <Card
+                    title={t('features.auto_doc.title')}
+                    subtitle={t('features.auto_doc.subtitle')}
+                    icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>}
+                  >
+                    <p className="text-sm text-slate-400">{t('features.auto_doc.desc')}</p>
+                  </Card>
+                </div>
               </div>
             </div>
           </div>
