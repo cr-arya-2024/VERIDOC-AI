@@ -14,18 +14,34 @@ import { useTranslations } from 'next-intl';
 export const AnalysisDisplay: React.FC<AnalysisDisplayProps> = ({ result, onReset }) => {
   const t = useTranslations('analysis');
 
+  const handleDownload = () => {
+    const element = document.createElement("a");
+    const file = new Blob([result.rawAnalysis || result.summary || ''], { type: 'text/markdown' });
+    element.href = URL.createObjectURL(file);
+    element.download = "analysis-result.md";
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  };
+
   return (
     <div className="max-w-5xl mx-auto space-y-8 pb-20 animate-in fade-in duration-700">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-white flex items-center gap-3">
-            <span className="text-indigo-500">{t('title_prefix')}</span> {result.moduleName || 'Analysis Result'}
+          <h2 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-3">
+            <span className="text-indigo-500 text-xl md:text-2xl lg:text-3xl">{t('title_prefix')}</span> {result.moduleName || 'Analysis Result'}
           </h2>
-          <p className="text-slate-400 mt-1">{result.description || 'Analysis complete'}</p>
         </div>
-        <Button variant="secondary" onClick={onReset}>
-          {t('analyze_another')}
-        </Button>
+        <div className="flex gap-4">
+          <Button variant="secondary" onClick={handleDownload} className="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            {t('download_btn')}
+          </Button>
+          <Button variant="secondary" onClick={onReset}>
+            {t('analyze_another')}
+          </Button>
+        </div>
       </div>
 
       {result.rawAnalysis ? (

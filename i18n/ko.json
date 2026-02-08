@@ -46,6 +46,7 @@
   },
   "analysis": {
     "title_prefix": "분석:",
+    "download_btn": "결과 다운로드",
     "analyze_another": "다른 파일 분석",
     "executive_summary": "요약",
     "port_mapping": "포트 매핑",

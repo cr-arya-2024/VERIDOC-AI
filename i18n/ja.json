@@ -46,6 +46,7 @@
   },
   "analysis": {
     "title_prefix": "分析:",
+    "download_btn": "結果をダウンロード",
     "analyze_another": "別のファイルを分析",
     "executive_summary": "エグゼクティブサマリー",
     "port_mapping": "ポートマッピング",

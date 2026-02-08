@@ -46,6 +46,7 @@
 	},
 	"analysis": {
 		"title_prefix": "Analysis:",
+		"download_btn": "Download Result",
 		"analyze_another": "Analyze Another File",
 		"executive_summary": "Executive Summary",
 		"port_mapping": "Port Mapping",

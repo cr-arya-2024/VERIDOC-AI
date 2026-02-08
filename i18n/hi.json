@@ -46,6 +46,7 @@
   },
   "analysis": {
     "title_prefix": "विश्लेषण:",
+    "download_btn": "परिणाम डाउनलोड करें",
     "analyze_another": "एक और फ़ाइल का विश्लेषण करें",
     "executive_summary": "कार्यकारी सारांश",
     "port_mapping": "पोर्ट मैपिंग",

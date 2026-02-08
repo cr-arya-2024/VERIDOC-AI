@@ -46,6 +46,7 @@
   },
   "analysis": {
     "title_prefix": "分析：",
+    "download_btn": "下载结果",
     "analyze_another": "分析另一个文件",
     "executive_summary": "执行摘要",
     "port_mapping": "端口映射",

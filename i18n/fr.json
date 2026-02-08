@@ -46,6 +46,7 @@
   },
   "analysis": {
     "title_prefix": "Analyse:",
+    "download_btn": "Télécharger le résultat",
     "analyze_another": "Analyser un Autre Fichier",
     "executive_summary": "Résumé Exécutif",
     "port_mapping": "Mappage des Ports",
