@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { Button } from './Button';
 import { Card } from './Cards';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface FileUploadProps {
   onAnalyzeComplete: (analysis: string) => void;
@@ -11,6 +11,7 @@ interface FileUploadProps {
 
 export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyzeComplete, isAnalyzing }) => {
   const t = useTranslations('file_upload');
+  const locale = useLocale();
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
@@ -45,6 +46,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onAnalyzeComplete, isAna
 
       const formData = new FormData();
       formData.append('file', file);
+      formData.append('locale', locale);
 
       const res = await fetch('/api/analyze', {
         method: 'POST',

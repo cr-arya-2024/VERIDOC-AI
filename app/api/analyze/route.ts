@@ -39,10 +39,11 @@ export async function POST(request: NextRequest) {
         }
 
         const file = formData.get('file') as File | null;
+        const locale = formData.get('locale') as string || 'en'; // Default to English if not provided
         if (!file) {
             return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
         }
-        console.log(`Processing file: ${file.name}, size: ${file.size} bytes`);
+        console.log(`Processing file: ${file.name}, size: ${file.size} bytes, locale: ${locale}`);
 
         const code_content = await file.text();
         const file_name = file.name;
@@ -52,12 +53,15 @@ export async function POST(request: NextRequest) {
         let analysis_result = '';
         try {
             const prompt = `Analyze this Verilog code and provide:
-1.Provide the analysis in plain text only. Do not use Markdown formatting such as asterisks (**), hashtags (#), backticks (\`), or underscores. Use simple capitalization for headers and standard dashes for lists. 
-2.Code quality assessment
-3. Potential bugs or errors
-4. Optimization suggestions
-5. Synthesis warnings
-6. Best practices violations
+1. RESPOND IN ${locale}. YOU MUST RESPOND UNMISTAKABLY IN ${locale}.
+2. Provide the analysis in plain text only. Do not use Markdown formatting such as asterisks (**), hashtags (#), backticks (\`), or underscores. Use simple capitalization for headers and standard dashes for lists. 
+3. Code quality assessment
+4. Potential bugs or errors
+5. Optimization suggestions
+6. Synthesis warnings
+7. Best practices violations
+${locale === 'hi' ? `8. STRICTLY TRANSLITERATE 'Veridoc AI' to 'वेरिडोक एआई'. Do not translate the meaning.
+9. For all other brand names or tool names, keep the pronunciation but change the script to Hindi (Transliteration).` : ''}
 
 Verilog Code:
 ${code_content}`;
