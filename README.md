@@ -1,4 +1,3 @@
-Here’s a polished README you can copy‑paste into `README.md` and then tweak as you like.
 
 ***
 
