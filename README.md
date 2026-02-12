@@ -4,7 +4,7 @@ VERIDOC-AI is an AI‑powered web app that validates and analyzes documents (PDF
 🔗 Live app: https://veridoc-ai-gamma.vercel.app/
 ​
 
-Features
+Features:
 AI‑powered document understanding (summaries, key points, Q&A).
 
 Support for multiple document types (PDF, images, text).
@@ -33,6 +33,7 @@ Deployment: Vercel (auto deployments from GitHub).
 ​
 
 Project Structure
+
 Key folders and files:
 
 app/ – Next.js App Router pages, layouts, API routes, and UI components.
@@ -56,7 +57,7 @@ test-api.js – Simple script for testing API endpoints locally.
 lint_*.txt – Lint reports for tracking code‑quality improvements.
 ​
 
-Getting Started
+Getting Started:
 1. Prerequisites
 Node.js (LTS recommended).
 
