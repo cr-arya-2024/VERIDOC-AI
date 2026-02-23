@@ -12,7 +12,7 @@ Features:
 AI‑powered document understanding (summaries, key points, Q&A).
 =======
 ***
->>>>>>> a524413662397911429b921905c4340d0fa7ffe
+
 
 ## Features
 
@@ -50,7 +50,7 @@ Deployment: Vercel (auto deployments from GitHub).
 Project Structure
 
 =======
->>>>>>> a524413662397911429b921905c4340d0fa7ffec
+
 Key folders and files:
 
 - `app/` – Next.js App Router pages, layouts, API routes, and UI components. [github](https://github.com/cr-arya-2024/VERIDOC-AI)
@@ -89,7 +89,7 @@ API keys for the AI/LLM provider you use (configure in environment variables).
 bash
 =======
 ```bash
->>>>>>> a524413662397911429b921905c4340d0fa7ffec
+
 git clone https://github.com/cr-arya-2024/VERIDOC-AI.git
 cd VERIDOC-AI
 ```
