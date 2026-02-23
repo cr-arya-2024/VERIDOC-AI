@@ -7,7 +7,7 @@ VERIDOC-AI is an AI‑powered web app that validates and analyzes documents (PDF
 
 🔗 **Live app:** https://veridoc-ai-gamma.vercel.app/ [github](https://github.com/cr-arya-2024/VERIDOC-AI)
 
-<<<<<<< HEAD
+
 Features:
 AI‑powered document understanding (summaries, key points, Q&A).
 =======
@@ -37,7 +37,7 @@ AI‑powered document understanding (summaries, key points, Q&A).
 
 ## Project Structure
 
-<<<<<<< HEAD
+
 Language: TypeScript for frontend and backend routes.
 ​
 
@@ -73,7 +73,7 @@ Key folders and files:
 
 ### 2. Clone the repository
 
-<<<<<<< HEAD
+
 lint_*.txt – Lint reports for tracking code‑quality improvements.
 ​
 
