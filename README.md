@@ -1,6 +1,6 @@
 
 ***
-
+Youtube link:https://youtu.be/_rqsE7PexvY?si=f5TLIXKVwxJKqlUK
 # VERIDOC-AI
 
 VERIDOC-AI is an AI‑powered web app that validates and analyzes documents (PDFs, images, and text) using LLMs, giving you structured insights, red‑flag detection, and multilingual support in an easy dashboard.
@@ -12,7 +12,7 @@ Features:
 AI‑powered document understanding (summaries, key points, Q&A).
 =======
 ***
->>>>>>> a524413662397911429b921905c4340d0fa7ffec
+>>>>>>> a524413662397911429b921905c4340d0fa7ffe
 
 ## Features
 
